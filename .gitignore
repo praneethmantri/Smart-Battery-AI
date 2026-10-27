@@ -1,0 +1,68 @@
+# =============================================================================
+# Python & ML
+# =============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+*.joblib
+*.pkl
+*.onnx
+*.pt
+*.pth
+
+# Exceptions: Pre-trained production ML models & keepfiles required for backend out-of-the-box
+!ml/models/*.joblib
+!ml/models/*.json
+!ml/artifacts/.gitkeep
+
+# =============================================================================
+# Environments & Configs
+# =============================================================================
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.env
+.env.local
+*.log
+
+# =============================================================================
+# Databases & Local Runtime Data
+# =============================================================================
+*.sqlite3
+*.db
+data/raw/
+data/processed/
+data/telemetry_local.db
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# =============================================================================
+# Node & Frontend
+# =============================================================================
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+dist-ssr/
+frontend/.vite/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =============================================================================
+# OS & IDE
+# =============================================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

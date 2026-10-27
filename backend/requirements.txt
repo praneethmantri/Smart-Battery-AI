@@ -1,0 +1,9 @@
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+sqlalchemy>=2.0.28
+pydantic>=2.6.4
+pydantic-settings>=2.2.1
+python-dotenv>=1.0.1
+psutil>=5.9.0
+# Optional for cloud deployment to PostgreSQL:
+# psycopg2-binary>=2.9.9

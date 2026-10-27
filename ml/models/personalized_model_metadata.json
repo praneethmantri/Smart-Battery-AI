@@ -1,0 +1,171 @@
+{
+  "model_version": "2.0.0-personalized",
+  "algorithm": "Blended Hybrid (Model D)",
+  "underlying_learner": "Personalized Random Forest",
+  "training_timestamp": "2026-09-09T15:20:36.493546Z",
+  "features": [
+    "start_hour_sin",
+    "start_hour_cos",
+    "start_battery_percent",
+    "charger_type_fast",
+    "charger_type_slow",
+    "charger_type_standard",
+    "weekday_sin",
+    "weekday_cos",
+    "is_weekend",
+    "previous_day_usage_minutes",
+    "user_hist_unplug_sin_mean",
+    "user_hist_unplug_cos_mean",
+    "user_hist_unplug_circular_std",
+    "user_hist_weekday_unplug_sin_mean",
+    "user_hist_weekday_unplug_cos_mean",
+    "user_hist_weekend_unplug_sin_mean",
+    "user_hist_weekend_unplug_cos_mean",
+    "recent_3_unplug_sin_mean",
+    "recent_3_unplug_cos_mean",
+    "recent_7_unplug_sin_mean",
+    "recent_7_unplug_cos_mean",
+    "historical_start_hour_mean_sin",
+    "historical_start_hour_mean_cos",
+    "historical_start_soc_mean",
+    "historical_previous_day_usage_mean",
+    "completed_history_count"
+  ],
+  "base_features": [
+    "start_hour_sin",
+    "start_hour_cos",
+    "start_battery_percent",
+    "charger_type_fast",
+    "charger_type_slow",
+    "charger_type_standard",
+    "weekday_sin",
+    "weekday_cos",
+    "is_weekend",
+    "previous_day_usage_minutes"
+  ],
+  "historical_features": [
+    "user_hist_unplug_sin_mean",
+    "user_hist_unplug_cos_mean",
+    "user_hist_unplug_circular_std",
+    "user_hist_weekday_unplug_sin_mean",
+    "user_hist_weekday_unplug_cos_mean",
+    "user_hist_weekend_unplug_sin_mean",
+    "user_hist_weekend_unplug_cos_mean",
+    "recent_3_unplug_sin_mean",
+    "recent_3_unplug_cos_mean",
+    "recent_7_unplug_sin_mean",
+    "recent_7_unplug_cos_mean",
+    "historical_start_hour_mean_sin",
+    "historical_start_hour_mean_cos",
+    "historical_start_soc_mean",
+    "historical_previous_day_usage_mean",
+    "completed_history_count"
+  ],
+  "excluded_features": [
+    "charging_duration_minutes",
+    "end_battery_percent",
+    "average_temperature",
+    "screen_usage_minutes",
+    "profile_type",
+    "session_id"
+  ],
+  "dataset_split": {
+    "strategy": "chronological_per_user",
+    "train_ratio": 0.8,
+    "train_rows": 6151,
+    "test_rows": 1584,
+    "unique_users": 100
+  },
+  "target_representation": {
+    "target": "unplug_hour",
+    "strategy": "dual_sin_cos_circular",
+    "period": 24.0
+  },
+  "cold_start_strategy": {
+    "weight_formula": "min(history_count / 7.0, 1.0)",
+    "circular_vector_blend": true,
+    "plateau_threshold_sessions": 7
+  },
+  "metrics": {
+    "global_mae_minutes": 37.69,
+    "personalized_mae_minutes": 33.96,
+    "improvement_pct": 9.9,
+    "median_minutes": 21.08,
+    "rmse_minutes": 56.46,
+    "within_15_min_pct": 37.82,
+    "within_30_min_pct": 64.27,
+    "within_60_min_pct": 87.37
+  },
+  "all_model_comparison": [
+    {
+      "Model": "Global Baseline (Model A)",
+      "MAE (min)": 37.69,
+      "Median Error (min)": 23.54,
+      "RMSE (min)": 62.17,
+      "Within 15 min (%)": 33.59,
+      "Within 30 min (%)": 58.27,
+      "Within 60 min (%)": 83.9,
+      "Improvement (%)": 0.0
+    },
+    {
+      "Model": "Personalized GBR (Model B)",
+      "MAE (min)": 34.89,
+      "Median Error (min)": 22.26,
+      "RMSE (min)": 58.45,
+      "Within 15 min (%)": 36.3,
+      "Within 30 min (%)": 63.7,
+      "Within 60 min (%)": 86.36,
+      "Improvement (%)": 7.43
+    },
+    {
+      "Model": "Personalized RF (Model C)",
+      "MAE (min)": 33.96,
+      "Median Error (min)": 21.08,
+      "RMSE (min)": 56.46,
+      "Within 15 min (%)": 37.82,
+      "Within 30 min (%)": 64.27,
+      "Within 60 min (%)": 87.37,
+      "Improvement (%)": 9.9
+    },
+    {
+      "Model": "Blended Hybrid (Model D)",
+      "MAE (min)": 33.96,
+      "Median Error (min)": 21.08,
+      "RMSE (min)": 56.46,
+      "Within 15 min (%)": 37.82,
+      "Within 30 min (%)": 64.27,
+      "Within 60 min (%)": 87.37,
+      "Improvement (%)": 9.9
+    }
+  ],
+  "history_buckets_full_dataset": {
+    "0-2 sessions": {
+      "count": 300,
+      "global_mae": 36.25,
+      "personalized_mae": 35.5,
+      "improvement_min": 0.75,
+      "improvement_pct": 2.07
+    },
+    "3-6 sessions": {
+      "count": 400,
+      "global_mae": 34.42,
+      "personalized_mae": 28.9,
+      "improvement_min": 5.52,
+      "improvement_pct": 16.05
+    },
+    "7-14 sessions": {
+      "count": 800,
+      "global_mae": 37.4,
+      "personalized_mae": 29.9,
+      "improvement_min": 7.5,
+      "improvement_pct": 20.06
+    },
+    "15+ sessions": {
+      "count": 6235,
+      "global_mae": 35.13,
+      "personalized_mae": 28.88,
+      "improvement_min": 6.24,
+      "improvement_pct": 17.78
+    }
+  }
+}

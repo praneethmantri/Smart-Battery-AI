@@ -1,0 +1,83 @@
+{
+  "model_version": "1.0.0-baseline-global",
+  "algorithm": "Gradient Boosting",
+  "training_timestamp": "2026-09-09T15:11:08.706673Z",
+  "features": [
+    "start_hour_sin",
+    "start_hour_cos",
+    "start_battery_percent",
+    "charger_type_fast",
+    "charger_type_slow",
+    "charger_type_standard",
+    "weekday_sin",
+    "weekday_cos",
+    "is_weekend",
+    "previous_day_usage_minutes"
+  ],
+  "excluded_features": [
+    "charging_duration_minutes",
+    "end_battery_percent",
+    "average_temperature",
+    "screen_usage_minutes",
+    "profile_type",
+    "session_id"
+  ],
+  "dataset_split": {
+    "strategy": "chronological_per_user",
+    "train_ratio": 0.8,
+    "train_rows": 6151,
+    "test_rows": 1584,
+    "unique_users": 100
+  },
+  "target_representation": {
+    "target": "unplug_hour",
+    "strategy": "dual_sin_cos_circular",
+    "period": 24.0
+  },
+  "metrics": {
+    "mae_minutes": 37.69,
+    "median_minutes": 23.54,
+    "rmse_minutes": 62.17,
+    "within_15_min_pct": 33.59,
+    "within_30_min_pct": 58.27,
+    "within_60_min_pct": 83.9
+  },
+  "all_model_comparison": [
+    {
+      "Model": "Naive Baseline",
+      "MAE (min)": 163.52,
+      "Median Error (min)": 112.61,
+      "RMSE (min)": 215.82,
+      "Within 15 min (%)": 4.1,
+      "Within 30 min (%)": 8.4,
+      "Within 60 min (%)": 20.96
+    },
+    {
+      "Model": "Linear Regression",
+      "MAE (min)": 54.47,
+      "Median Error (min)": 38.34,
+      "RMSE (min)": 78.77,
+      "Within 15 min (%)": 21.4,
+      "Within 30 min (%)": 40.97,
+      "Within 60 min (%)": 69.07
+    },
+    {
+      "Model": "Random Forest",
+      "MAE (min)": 37.92,
+      "Median Error (min)": 24.45,
+      "RMSE (min)": 61.92,
+      "Within 15 min (%)": 32.13,
+      "Within 30 min (%)": 57.39,
+      "Within 60 min (%)": 84.66
+    },
+    {
+      "Model": "Gradient Boosting",
+      "MAE (min)": 37.69,
+      "Median Error (min)": 23.54,
+      "RMSE (min)": 62.17,
+      "Within 15 min (%)": 33.59,
+      "Within 30 min (%)": 58.27,
+      "Within 60 min (%)": 83.9
+    }
+  ]
+}
